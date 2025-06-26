@@ -43,8 +43,14 @@ class MainScreen extends StatefulWidget {
 class MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    HomeScreen(),
+  void _navigateToTab(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  List<Widget> get _screens => [
+    HomeScreen(onNavigateToTab: _navigateToTab),
     LessonsScreen(),
     QuizzesScreen(),
     ProfileScreen(),
