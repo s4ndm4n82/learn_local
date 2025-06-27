@@ -43,6 +43,42 @@ class UserProfile {
   });
 }
 
+class Quiz {
+  final String title;
+  final String description;
+  final int questionCount;
+  final String estimatedTime;
+  final String difficulty;
+  final bool isUnlocked;
+  final int bestScore;
+  final int attempts;
+
+  Quiz({
+    required this.title,
+    required this.description,
+    required this.questionCount,
+    required this.estimatedTime,
+    required this.difficulty,
+    required this.isUnlocked,
+    required this.bestScore,
+    required this.attempts,
+  });
+}
+
+class QuizQuestion {
+  final String question;
+  final List<String> options;
+  final int correctAnswer;
+  final String explanation;
+
+  QuizQuestion({
+    required this.question,
+    required this.options,
+    required this.correctAnswer,
+    required this.explanation,
+  });
+}
+
 class DownloadableLesson {
   final String id;
   final String title;
