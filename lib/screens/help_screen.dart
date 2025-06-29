@@ -1,5 +1,8 @@
+// Import Flutter material design components
 import 'package:flutter/material.dart';
 
+/// HelpScreen widget displays frequently asked questions and help information
+/// Provides expandable sections with answers to common user questions
 class HelpScreen extends StatelessWidget {
   const HelpScreen({super.key});
 

@@ -1,17 +1,30 @@
+// Import Flutter material design components
 import 'package:flutter/material.dart';
+// Import app data models
 import '../models/app_models.dart';
+// Import quiz detail screen for navigation
 import 'quiz_detail_screen.dart';
 
+/// QuizzesScreen widget displays available language quizzes
+/// Allows users to select a language and take quizzes for that language
 class QuizzesScreen extends StatefulWidget {
+  const QuizzesScreen({super.key});
+
   @override
-  _QuizzesScreenState createState() => _QuizzesScreenState();
+  QuizzesScreenState createState() => QuizzesScreenState();
 }
 
-class _QuizzesScreenState extends State<QuizzesScreen> {
+/// State class for QuizzesScreen
+/// Manages language selection and quiz data
+class QuizzesScreenState extends State<QuizzesScreen> {
+  // Currently selected language (default: Hindi)
   String selectedLanguage = 'Hindi';
+  
+  // List of available languages for quizzes
   final List<String> languages = ['Hindi', 'Yoruba', 'Swahili', 'Bengali'];
 
-  // Quiz data structure
+  // Map of quizzes organized by language
+  // Each language has multiple quizzes with difficulty levels and scoring
   final Map<String, List<Quiz>> quizzes = {
     'Hindi': [
       Quiz(

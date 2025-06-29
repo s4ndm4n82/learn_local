@@ -1,25 +1,37 @@
+// Import Flutter material design components
 import 'package:flutter/material.dart';
+// Import system services for haptic feedback
 import 'package:flutter/services.dart';
+// Import app data models
 import '../models/app_models.dart';
 
+/// QuizDetailScreen widget for taking language quizzes
+/// Displays questions, handles answers, and tracks progress
 class QuizDetailScreen extends StatefulWidget {
-  final Quiz quiz;
-  final String language;
+  final Quiz quiz;      // Quiz object containing metadata
+  final String language; // Language being tested
 
-  QuizDetailScreen({required this.quiz, required this.language});
+  const QuizDetailScreen({
+    super.key,
+    required this.quiz,
+    required this.language,
+  });
 
   @override
-  _QuizDetailScreenState createState() => _QuizDetailScreenState();
+  QuizDetailScreenState createState() => QuizDetailScreenState();
 }
 
-class _QuizDetailScreenState extends State<QuizDetailScreen> {
-  int currentQuestionIndex = 0;
-  int? selectedAnswerIndex;
-  List<int> userAnswers = [];
-  bool quizCompleted = false;
-  int score = 0;
+/// State class for QuizDetailScreen
+/// Manages quiz progress, answers, and scoring
+class QuizDetailScreenState extends State<QuizDetailScreen> {
+  int currentQuestionIndex = 0;    // Current question being displayed (0-based)
+  int? selectedAnswerIndex;        // Currently selected answer option
+  List<int> userAnswers = [];      // List of user's answers for all questions
+  bool quizCompleted = false;      // Whether the quiz has been completed
+  int score = 0;                   // User's final score
 
-  // Sample quiz questions for different languages
+  // Sample quiz questions organized by language and quiz title
+  // Key format: "Language_QuizTitle"
   final Map<String, List<QuizQuestion>> quizQuestions = {
     'Hindi_Hindi Greetings Quiz': [
       QuizQuestion(
@@ -383,10 +395,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                           '$score/${widget.quiz.questionCount}',
                         ),
                         _buildResultStat('Percentage', '$percentage%'),
-                        _buildResultStat(
-                          'Time',
-                          '${widget.quiz.estimatedTime}',
-                        ),
+                        _buildResultStat('Time', widget.quiz.estimatedTime),
                       ],
                     ),
                     SizedBox(height: 16),

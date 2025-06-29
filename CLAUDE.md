@@ -35,12 +35,14 @@ This is a Flutter mobile application called "Learn Local" for learning local lan
 ### Key Components
 - **MainScreen**: Central navigation hub with BottomNavigationBar
 - **Screens**: Individual feature screens (HomeScreen, LessonsScreen, etc.)
-- **Models**: Data classes for Lessons, Phrase, and UserProfile
+- **Models**: Data classes for Lessons, Phrase, UserProfile, Quiz, QuizQuestion, DownloadableLesson, and Achievement
 
 ### Current State
 - App has basic navigation structure implemented
-- Most features show "Coming Soon" placeholders
-- Git status shows deleted `lib/models/models.dart` and new files `lib/models/app_models.dart` and `lib/screens/lesson_detail_screen.dart`
+- Most features show "Coming Soon" placeholders except Home, Lessons, and Quizzes which have full implementations
+- Lessons feature includes interactive lesson detail screens with simulated audio and speech practice
+- Quizzes feature includes comprehensive quiz management with progress tracking
+- Home screen includes offline lesson download functionality
 
 ### Theme & Design
 - Primary color: Green (Colors.green)
@@ -58,23 +60,30 @@ This is a Flutter mobile application called "Learn Local" for learning local lan
 
 ### Current Implementation Status
 - Navigation structure complete with 7-tab bottom navigation
-- Screen templates created but mostly contain placeholder content
-- Data models defined in `lib/models/app_models.dart` (Lessons, Phrase, UserProfile)
-- New lesson detail screen created but incomplete (`lib/screens/lesson_detail_screen.dart`)
-- Ready for feature implementation in individual screens
+- **Home Screen**: Dashboard with language selection, quick actions, and offline download management
+- **Lessons Screen**: Language dropdown, lesson list with progress tracking, and interactive lesson details
+- **Quizzes Screen**: Comprehensive quiz system with statistics and progress tracking
+- **Other Screens**: Profile, Settings, Help, About screens show "Coming Soon" placeholders
+- Data models defined in `lib/models/app_models.dart` with comprehensive class structure
 
 ### Code Structure Details
-- **Models**: `lib/models/app_models.dart` contains three main data classes:
+- **Models**: `lib/models/app_models.dart` contains seven main data classes:
   - `Lessons`: title, description, progress, isUnlocked
   - `Phrase`: localletters, english, local, pronunciation 
   - `UserProfile`: name, lessonsCompleted, currentStreak, totalPoints, badges
+  - `Quiz`: title, description, questionCount, estimatedTime, difficulty, isUnlocked, bestScore, attempts
+  - `QuizQuestion`: question, options, correctAnswer, explanation
+  - `DownloadableLesson`: id, title, language, description, fileSizeMB, download states
+  - `Achievement`: title, description, current, target, emoji
 - **Navigation Pattern**: Uses StatefulWidget with index-based screen switching via `_selectedIndex`
 - **Screen Organization**: 
-  - `HomeScreen`: Dashboard with language selection and quick actions
-  - `LessonsScreen`: Language dropdown, lesson list with progress tracking
-  - `LessonDetailScreen`: Interactive phrase learning with simulated audio features
+  - `HomeScreen`: Dashboard with language selection, quick actions, and sophisticated offline download dialog
+  - `LessonsScreen`: Language dropdown, lesson list with progress tracking and locked/unlocked states
+  - `LessonDetailScreen`: Interactive phrase learning with simulated audio, speech practice, and pronunciation scoring
+  - `QuizzesScreen`: Quiz management with statistics, difficulty indicators, and attempt tracking
+  - `QuizDetailScreen`: Referenced but not yet implemented
   - Other screens: Currently show "Coming Soon" placeholders
-- **Data Management**: Hardcoded Maps in screen files link languages to lessons and phrases
+- **Data Management**: Hardcoded Maps in screen files link languages to lessons, phrases, and quizzes
 - **Screen Imports**: All screens imported directly in main.dart
 - **Theme Configuration**: Centralized in MaterialApp with green primary swatch and Roboto font
 
@@ -83,22 +92,32 @@ This is a Flutter mobile application called "Learn Local" for learning local lan
 ### Language Support
 - Supports 4 languages: Hindi, Yoruba, Swahili, Bengali
 - Each language has native script (`localletters`), romanized text (`local`), and English translation
-- Language selection managed through dropdown in LessonsScreen
+- Language selection managed through dropdown in LessonsScreen and QuizzesScreen
+- Extensive phrase data with pronunciation guides for lesson content
 
 ### Progress Tracking
 - Lesson progress stored as double (0.0-1.0) in Lessons model
 - Visual progress indicators throughout the UI
-- Lock/unlock system for lessons based on progress
+- Lock/unlock system for lessons and quizzes based on progress
+- Quiz attempts and best scores tracked per quiz
+
+### Interactive Features
+- Simulated audio playback for phrase pronunciation
+- Speech practice with mock pronunciation scoring (75-100% range)
+- Offline lesson downloads with progress indicators and file size management
+- Quiz statistics and performance tracking
 
 ### Navigation Flow
 ```
 Main App → MainScreen (7-tab BottomNav)
-         ├── Home → Language Selection
-         ├── Lessons → Language Dropdown → Lesson List → Lesson Detail
+         ├── Home → Language Selection → Offline Downloads
+         ├── Lessons → Language Dropdown → Lesson List → Lesson Detail → Interactive Learning
+         ├── Quizzes → Language Dropdown → Quiz List → Quiz Detail (not implemented)
          └── Other tabs (placeholders)
 ```
 
 ### Screen State Management
 - Uses StatefulWidget pattern for screens with local state
 - No global state management solution currently implemented
-- Consider implementing Provider/Riverpod for complex state sharing
+- Consider implementing Provider/Riverpod for complex state sharing across features
+- Timer-based progress simulation for downloads and interactive features

@@ -1,7 +1,12 @@
+// Import Flutter material design components
 import 'package:flutter/material.dart';
+// Import app data models
 import '../models/app_models.dart';
+// Import lesson detail screen for navigation
 import 'lesson_detail_screen.dart';
 
+/// LessonsScreen widget displays available language lessons
+/// Allows users to select a language and view lessons for that language
 class LessonsScreen extends StatefulWidget {
   const LessonsScreen({super.key});
 
@@ -9,10 +14,17 @@ class LessonsScreen extends StatefulWidget {
   LessonsScreenState createState() => LessonsScreenState();
 }
 
+/// State class for LessonsScreen
+/// Manages language selection and lesson data
 class LessonsScreenState extends State<LessonsScreen> {
+  // Currently selected language (default: Hindi)
   String selectedLanguage = 'Hindi';
+  
+  // List of available languages for learning
   final List<String> languages = ['Hindi', 'Yoruba', 'Swahili', 'Bengali'];
 
+  // Map of lessons organized by language
+  // Each language has a list of lessons with progress tracking
   final Map<String, List<Lessons>> lessons = {
     'Hindi': [
       Lessons(

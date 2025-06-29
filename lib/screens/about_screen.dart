@@ -1,5 +1,8 @@
+// Import Flutter material design components
 import 'package:flutter/material.dart';
 
+/// AboutScreen widget displays app information and features
+/// Shows app version, description, feature list, and copyright information
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
@@ -65,9 +68,12 @@ class AboutScreen extends StatelessWidget {
   }
 }
 
+/// Helper function to build feature list items
+/// @param text: Feature description with emoji icon
+/// @return: Widget with consistent styling for feature items
 Widget _buildFeatureItem(String text) {
   return Padding(
-    padding: EdgeInsets.only(bottom: 8.0),
+    padding: EdgeInsets.only(bottom: 8.0), // Spacing between items
     child: Text(text, style: TextStyle(fontSize: 16.0)),
   );
 }
