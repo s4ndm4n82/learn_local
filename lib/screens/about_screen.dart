@@ -16,7 +16,11 @@ class AboutScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 32.0),
-            Icon(Icons.language, size: 80, color: Colors.green),
+            Image.asset(
+              'assets/images/logo.png',
+              width: 80,
+              height: 80,
+            ),
             SizedBox(height: 16.0),
             Text(
               'Learn Local',
