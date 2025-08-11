@@ -56,6 +56,8 @@ This is a Flutter mobile application called "Learn Local" for learning local lan
 - Uses Flutter SDK ^3.8.1 (from pubspec.yaml)
 - cupertino_icons: ^1.0.8 for iOS-style icons
 - flutter_lints: ^5.0.0 for code analysis and linting
+- flutter_launcher_icons: ^0.13.1 for app icon generation
+- flutter_native_splash: ^2.3.2 for splash screen configuration
 - No additional third-party packages currently integrated
 
 ### Current Implementation Status
@@ -119,5 +121,18 @@ Main App → MainScreen (7-tab BottomNav)
 ### Screen State Management
 - Uses StatefulWidget pattern for screens with local state
 - No global state management solution currently implemented
+- Theme management handled via ThemeNotifier (ChangeNotifier) in main.dart
 - Consider implementing Provider/Riverpod for complex state sharing across features
 - Timer-based progress simulation for downloads and interactive features
+
+### Icon and Splash Screen Configuration
+- App uses custom logo (assets/images/logo.png) for all platforms
+- flutter_launcher_icons generates platform-specific app icons
+- flutter_native_splash creates splash screens with LearnLocal branding
+- Green color scheme (#4CAF50) used consistently across branding elements
+
+### Testing Notes
+- Default widget test exists but needs updating (currently tests counter functionality that doesn't exist)
+- Tests located in test/ directory
+- Run `flutter test` to execute all tests
+- Consider adding integration tests for navigation flows and key user interactions
